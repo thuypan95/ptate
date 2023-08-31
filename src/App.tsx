@@ -42,7 +42,7 @@ function App() {
       clearInterval(interval);
     };
   }, []);
-  const percent = (total / 365) * 100;
+  // const percent = (total / 365) * 100;
   const list = [
     { type: "years", value: years },
     { type: "months", value: months },
