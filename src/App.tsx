@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import moment from "moment";
-import {
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import img1 from './background.jpg'
+import chicken from "./images/chicken.jpg";
+import big from "./images/big.jpg";
+import ate from "./images/ate.png";
+import small from "./images/small.jpg";
+
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [time, setTime] = useState(Date.now());
@@ -41,7 +42,7 @@ function App() {
       clearInterval(interval);
     };
   }, []);
-  const percent = total/365 * 100
+  const percent = (total / 365) * 100;
   const list = [
     { type: "years", value: years },
     { type: "months", value: months },
@@ -52,8 +53,12 @@ function App() {
   ];
   return (
     <div>
+      
       <div className="App">
-        <CircularProgressbarWithChildren styles={{
+      <div className="small">
+          <img src={small} alt="small" width={200} />
+        </div>
+        {/* <CircularProgressbarWithChildren styles={{
           path: {
             // Path color
             // stroke: `rgba(62, 152, 199, ${percent / 100})`,
@@ -75,22 +80,30 @@ function App() {
             <h2>{total}</h2>
           </div>
          <div className='days'> days</div>
-        </CircularProgressbarWithChildren>
-
+        </CircularProgressbarWithChildren> */}
+        <div className="anniversary">
+          <h3>{total}</h3>
+          <p>Days</p>
+        </div>
+        <div className="big-chicken">
+          <img src={big} alt="big" width={100} />
+          <img src={chicken} alt="big" width={100} />
+        </div>
+        <div style={{width:"100%"}}>
         <div className="wrapper">
+          <div className="ate">
+          <img src={ate} alt="ate" width={150} />
+
+          </div>
           {list.map((item) => (
             <div className="item">
               <div className="item_value">{item.value}</div>
-
               <div className="item_type">{item.type}</div>
             </div>
           ))}
         </div>
-        <div className="images">
-            <img className="images-child"src={img1} alt=""/>
-            <img className="images-child"src={img1} alt=""/>
-
         </div>
+       
       </div>
     </div>
   );
