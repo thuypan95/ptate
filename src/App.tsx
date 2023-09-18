@@ -33,7 +33,7 @@ function App() {
 
   var minutes = end.diff(start, "minutes");
   start.add(minutes, "minutes");
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   var seconds = end.diff(start, "seconds");
 
   const total = moment.duration(current.diff(start1)).asDays();
