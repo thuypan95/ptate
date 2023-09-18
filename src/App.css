@@ -55,13 +55,13 @@ body * {
 }
 .wrapper {
   position: relative;
-  margin-top: -23px;
+  margin-top: 110px;
   width: 80%;
   align-content: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  grid-auto-rows: minmax(120px, 80px);
+  grid-auto-rows: minmax(90px, 80px);
 }
 .ate {
   z-index: 2;
