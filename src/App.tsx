@@ -41,11 +41,16 @@ function App() {
       const rndInt = Math.floor(Math.random() * 92) + 1;
       setIndex(rndInt)
 
-    }, 30000);
+    }, 60000);
     return () => {
       clearInterval(interval);
     };
   }, []);
+  const handleOnClick=()=>{
+    const rndInt = Math.floor(Math.random() * 92) + 1;
+    setIndex(rndInt)
+
+  }
   const list = [
     { type: "years", value: years },
     { type: "months", value: months },
@@ -55,8 +60,7 @@ function App() {
     { type: "seconds", value: '00' },
   ];
   return (
-    <div>
-      
+    <div onClick={handleOnClick}>
       <div className="App">
       <div className="small">
           <img src={small} alt="small" width={150} />
@@ -67,8 +71,7 @@ function App() {
           <p>Days</p>
         </div>
         <div className="">
-          {/* <img src={big} alt="big" width={100} />
-          <img src={chicken} alt="big" width={100} /> */}
+
           <blockquote>"{listDN[index].d}"</blockquote>
           <blockquote style={{fontFamily:'sans-serif', fontSize:'13px', fontStyle:'italic'}}>{listDN[index].vn}</blockquote>
         </div>
