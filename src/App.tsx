@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import moment from "moment";
 import "react-circular-progressbar/dist/styles.css";
-// import chicken from "./images/chicken.jpg";
-// import big from "./images/big.jpg";
+
 import ate from "./images/ate.png";
 import small from "./images/small.jpg";
 import {listDN} from "./danhngon"
@@ -14,7 +13,6 @@ function App() {
   const [index, setIndex] = useState<number>(Math.floor(Math.random() * 40) + 1)
   const start1 = moment("2023-02-14");
   var current = moment().startOf("day");
-
   var start = moment("2023-02-14 00:00:00");
 
   var end = moment();
@@ -40,11 +38,10 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
      
-      const rndInt = Math.floor(Math.random() * 40) + 1;
-      console.log('rndInt', rndInt)
+      const rndInt = Math.floor(Math.random() * 92) + 1;
       setIndex(rndInt)
 
-    }, 60000);
+    }, 30000);
     return () => {
       clearInterval(interval);
     };
