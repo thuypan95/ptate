@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
      
-      const rndInt = Math.floor(Math.random() * 92) + 1;
+      const rndInt = Math.floor(Math.random() * 91) + 1;
       setIndex(rndInt)
 
     }, 60000);
@@ -47,7 +47,7 @@ function App() {
     };
   }, []);
   const handleOnClick=()=>{
-    const rndInt = Math.floor(Math.random() * 92) + 1;
+    const rndInt = Math.floor(Math.random() * 91) + 1;
     setIndex(rndInt)
 
   }
