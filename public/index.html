@@ -149,6 +149,7 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
         overflow: hidden;
         backface-visibility: hidden;
+        padding-top: 20px;
       }
 
       .cover-front::after {
@@ -419,6 +420,27 @@
         /* width: 90%;
             max-width: 1000px;  */
       }
+
+      .tree {
+        margin-bottom: 20px;
+        position: relative;
+        transform-style: preserve-3d; /* Ensure children are rendered in 3D space */
+        transform: rotateX(10deg); /* Rotate the tree to face the correct direction */
+      }
+      .star {
+        position: absolute;
+        font-size: 12px;
+        opacity: 0;
+        animation: twinkle 1s infinite alternate, appear 5s forwards;
+      }
+      @keyframes twinkle {
+        from { opacity: 1; }
+        to { opacity: 0.5; }
+      }
+      @keyframes appear {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
     </style>
   </head>
   <body>
@@ -468,13 +490,13 @@
             <div class="gold-border"></div>
             <div class="gold-border2"></div>
 
-            <svg class="tree-svg" viewBox="0 0 100 120">
+            <!-- <svg class="tree-svg" viewBox="0 0 100 120">
               <path
                 d="M50 10 L15 60 L30 60 L10 100 L90 100 L70 60 L85 60 Z"
               ></path>
               <rect x="45" y="100" width="10" height="15"></rect>
-            </svg>
-
+            </svg> -->
+            <div class="tree" id="tree"></div>
             <p
               style="
                 color: #fff;
@@ -589,6 +611,8 @@
           envelope.classList.add("opened");
           mainContainer.classList.add("active");
         }
+        createTree();
+
       }
       function toggleCard() {
         // Chỉ cho phép mở thiệp nếu bìa thư đã mở
@@ -607,6 +631,7 @@
           card.classList.add("playing");
           musicStatus.innerText = "NOW PLAYING...";
         } else {
+
           audio.pause();
           card.classList.remove("playing");
           musicStatus.innerText = "MUSIC PAUSED";
@@ -625,6 +650,57 @@
         setTimeout(() => flake.remove(), 5000);
       }
       setInterval(createSnowflake, 100);
+
+      function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function createTree() {
+      const tree = document.getElementById('tree');
+      const layers = 5;
+      let delay = 0;
+
+      for (let i = 0; i < layers; i++) {
+        const layerSize = (layers - i) * 10;
+        const radius = (layers - i) * 15; // Increase radius to prevent overlapping
+        for (let j = 0; j < layerSize; j++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          const angle = (j / layerSize) * 2 * Math.PI;
+          const x = radius * Math.cos(angle);
+          const z = radius * Math.sin(angle);
+          const y = i * 20;
+          star.innerText = '*';
+          star.style.color ='#fff';
+          star.style.left = `${x}px`;
+          star.style.bottom = `${y}px`;
+          star.style.transform = `translateZ(${z}px)`;
+          star.style.animationDelay = `${delay}s, ${delay + 1}s`;
+          star.style.fontSize = `${12 + i}px`; // Increase size of each star
+          tree.appendChild(star);
+
+          delay += 0.01; // Delay each star slightly for animation
+        }
+      }
+
+      // Add Top Star
+      const topStar = document.createElement('div');
+      topStar.className = 'star';
+      topStar.innerText = '🌟';
+    //   topStar.style.color = getRandomColor(); // Golden Top Star
+      topStar.style.fontSize = '22px';
+      topStar.style.left = '-10px';
+      topStar.style.bottom = `${(layers * 20) +  5}px`;
+      topStar.style.transform = `translateZ(0px)`;
+      topStar.style.animationDelay = `${delay}s, ${delay + 1}s`;
+      tree.appendChild(topStar);
+    }
+
     </script>
   </body>
 </html>
