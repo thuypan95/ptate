@@ -169,6 +169,9 @@
         }
 
         loop();
+          const music = document.getElementById("bgMusic");
+
+          music.play();
         // Cho phép người dùng click bắn thêm pháo tùy ý
         canvas.addEventListener('mousedown', (e) => {
             fireworks.push(new Firework(width/2, height, e.clientX, e.clientY));
